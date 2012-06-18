@@ -4,7 +4,8 @@
     [hiccup
       [page :refer [html5]]
       [element :refer [javascript-tag]]
-      [page :refer [include-js]]]))
+      [page :refer [include-js include-css]]]
+    [net.cgrand.enlive-html :as enlive]))
 
 ; When using {:optimizations :whitespace}, the Google Closure compiler combines
 ; its JavaScript inputs into a single file, which obviates the need for a "deps.js"
@@ -21,13 +22,13 @@
 
 (defn index-page []
   (html5
-    [:head
-      [:title (shared/make-example-text)] ]
-    [:body
-      [:h1 (shared/make-example-text)]
-      (run-clojurescript
+   [:head
+    [:title "hello clojurescript"]
+    (include-css "/extjs-4.1.0/resources/css/ext-all.css")
+    (include-js "/extjs-4.1.0/ext-debug.js")]
+   [:body (run-clojurescript
         "/js/main-debug.js"
-        "example.hello.say_hello()")]))
+        "example.repl.connect()")]))
 
 (defn repl-demo-page []
   (html5
