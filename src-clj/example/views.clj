@@ -20,15 +20,37 @@
     (include-js path)
     (javascript-tag init)))
 
+;; (defn make-js-map
+;;   "makes a javascript map from a clojure one
+;;    (stolen from https://gist.github.com/1098417) "
+;;   [cljmap]
+;;   (let [out (js-obj)]
+;;     (doall (map #(aset out (name (first %)) (second %)) cljmap))
+;;     out))
+
+;; (defn ^:export init []
+;;   (Ext.Application.
+;;    (make-js-map
+;;     {"launch" #(Ext.Panel.
+;;                 (make-js-map {"fullscreen" true,
+;;                               "html" "Hello World!!"}))})))
+
+;;Ext.Msg.alert ('Status', 'Changes saved successfully.');
+;(Ext.Msg.alert "status" "helloworld.")
+;(Ext.Msg.show (make-js-map {"title" "hello" "msg" "world" }))
+
+
+
 (defn index-page []
   (html5
    [:head
     [:title "hello clojurescript"]
     (include-css "/extjs-4.1.0/resources/css/ext-all.css")
-    (include-js "/extjs-4.1.0/ext-debug.js")]
-   [:body (run-clojurescript
-        "/js/main-debug.js"
-        "example.repl.connect()")]))
+    (include-js "/extjs-4.1.0/ext-all-debug-w-comments.js")]
+   [:body
+    (run-clojurescript
+     "/js/main-debug.js"
+     "example.repl.connect()")]))
 
 (defn repl-demo-page []
   (html5
