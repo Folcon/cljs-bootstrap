@@ -25,10 +25,11 @@
    [:head
     [:title "hello clojurescript"]
     (include-css "/extjs-4.1.0/resources/css/ext-all.css")
-    (include-js "/extjs-4.1.0/ext-debug.js")]
-   [:body (run-clojurescript
-        "/js/main-debug.js"
-        "example.repl.connect()")]))
+    (include-js "/extjs-4.1.0/ext-all-debug-w-comments.js")]
+   [:body
+    (run-clojurescript
+     "/js/main-debug.js"
+     "example.repl.connect(); example.sencha.bootstrap();")]))
 
 (defn repl-demo-page []
   (html5
